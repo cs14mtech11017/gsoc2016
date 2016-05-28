@@ -1,0 +1,30 @@
+<html>
+<title>Weekly progress of GSoC project</title>
+<body>
+	<h1>Week 1: 23-05-2016 to 30-05-2016</h1>
+	<a>
+		<ol>
+
+			<li>Completed decoupling ScopInfo for the pass logic.</li>
+			<li>All Unit test passed.</li>
+			<li>Sent a patch to polly-dev mailing list.</li>
+			<li>Johannes asked to run lnt with polly. Also asked few changes.</li>
+			<li>Created a review in reviews.llvm.org after making necessary changes. D#</li>
+			<li>Lnt is failing on my local server. I have verified that lnt is failing for these test cases even without my changes. Tracking them just for the record.</li>
+			With -polly-process-unprofitable<br />
+			FAIL: MultiSource/Applications/sqlite3/sqlite3.compile_time (1 of 1992)<br/>
+			FAIL: MultiSource/Benchmarks/ASCI_Purple/SMG2000/smg2000.compile_time (2 of 1992)<br />
+			FAIL: MultiSource/Benchmarks/tramp3d-v4/tramp3d-v4.compile_time (3 of 1992)<br />
+			<br />
+			With -polly-process-unprofitable -polly-position=before-vectorizer<br />
+			FAIL: MultiSource/Applications/sqlite3/sqlite3.compile_time (1 of 1992),br />
+			FAIL: MultiSource/Benchmarks/7zip/7zip-benchmark.compile_time (2 of 1992)<br />
+			FAIL: MultiSource/Benchmarks/tramp3d-v4/tramp3d-v4.compile_time (3 of 1992)<br />
+			FAIL: MultiSource/Applications/sqlite3/sqlite3.execution_time (499 of 1992)<br />
+			FAIL: MultiSource/Benchmarks/tramp3d-v4/tramp3d-v4.execution_time (500 of 1992)<br />
+		</ol>
+	</a>
+
+</body>
+
+</html>
