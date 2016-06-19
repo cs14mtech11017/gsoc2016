@@ -4,7 +4,6 @@
 	<h1>Week 1: 23-05-2016 to 30-05-2016</h1>
 	<p>
 		<ol>
-
 			<li>Completed decoupling ScopInfo from the pass logic.</li>
 			<li>All Unit test passed.</li>
 			<li>Sent a patch to polly-dev mailing list.</li>
@@ -27,27 +26,30 @@
 	<h1>Week 2: 30-05-2016 to 06-06-2016</h1>
 	<p>
 		<ol>
-
-			<li>First patch D20770 got accepted. <br /> -Committed under http://reviews.llvm.org/rL271259. <br /> -It addressed following things</li>
-			<li>Decoupled SCoP creation and pass logic.</li>
-			Created a new pass ScopInfoRegionPass. As name suggests, it is a region pass and it is there to preserve compatibility with our existing Polly passes.
-			<br />
-			ScopInfoRegionPass will return ScopInfo object, which actually builds the SCoP object.
-			<br />
-			<li>Sent second patch D20831 for review- <br/>- It addresses following things</li>
-			Renamed ScopInfo to ScopBuiler and changed memory management for scop object.
-			<br />
-			ScopBuilder will not be exposed to other passes, it will build the scop object and hand over ownership of the object via getScop() method.
-			<br />
-			Going forward, we should not use ScopBuilder anywhere else to create scop object. We must use ScopInfoRegionPass or ScoInfoWrapperPass to build the scop object.
-			<br />
-			Removed ScopBuilder pointer from ScopInfoRegionPass. ScopInfoRegionPass will hold the scop object for the current region.
-			<li>Next patch in pipeline -<br /> -Expected changes</li>
-			Add a new function pass ScopInfoWrapperPass.
-			<br />
-			The rationale behind this pass is that region pass or scop pass can not be used by function pass, CallGraphSCCPass and module pass.
-            <br />
-            It will hold a map of region to scop object
+			<li>First patch <a href="http://reviews.llvm.org/D20770 ">D20770</a> got accepted. <br /> 
+			-Committed under http://reviews.llvm.org/rL271259. <br /> 
+			-It addressed following things</li>
+			<ol>
+				<li>Decoupled SCoP creation and pass logic.</li>
+				<li>Created a new pass ScopInfoRegionPass. As name suggests, it is a region pass and it is there to preserve compatibility with our existing Polly passes.</li>
+				<li>ScopInfoRegionPass will return ScopInfo object, which actually builds the SCoP object.</li>
+			</ol>
+			<li>Sent second patch <a href="http://reviews.llvm.org/D20831">D20831</a> for review- <br/> 
+			-It addresses following things</li>
+			<ul>
+				<li>Renamed ScopInfo to ScopBuiler and changed memory management for scop object.</li>
+				<li>ScopBuilder will not be exposed to other passes, it will build the scop object and hand over ownership of the object via getScop() method.<br />
+				Going forward, we should not use ScopBuilder anywhere else to create scop object. We must use ScopInfoRegionPass or ScoInfoWrapperPass to build the scop object.
+				</li>
+				<li>Removed ScopBuilder pointer from ScopInfoRegionPass. ScopInfoRegionPass will hold the scop object for the current region.</li>
+			</ul>
+			<li>Next patch in pipeline -<br /> 
+			-Expected changes</li>
+			<ul>
+			<li>Add a new function pass ScopInfoWrapperPass.</li>
+			<li>The rationale behind this pass is that region pass or scop pass can not be used by function pass, CallGraphSCCPass and module pass.</li>
+			<li>It will hold a map of region to scop object</li>
+			</ul>            
 		</ol>
 	</p>
 </body>
